@@ -1,0 +1,4 @@
+export const BUSINESS_ERRORS = {
+  EXAMPLE_ERROR: "EXAMPLE",
+
+};
