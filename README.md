@@ -1,8 +1,13 @@
-# esqueleto
+# esqueleto - skeleton - template
 
 typescript
+
 sequelize - sqlite (in-memory)
+
 fastify
+
 swagger
+
 prom-client
+
 logger (winston)
