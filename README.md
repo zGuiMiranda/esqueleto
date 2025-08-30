@@ -4,6 +4,12 @@ typescript
 
 sequelize - sqlite (in-memory)
 
+jest
+
+docker
+
+dotenv
+
 fastify
 
 swagger
