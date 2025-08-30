@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { ExampleModel } from "../../src/core/model/ExampleModel";
+import { ExampleModel } from "src/core/model/ExampleModel";
 
 export const sequelize = new Sequelize({
   dialect: "sqlite",

@@ -1,18 +1,20 @@
 import { FastifyInstance, FastifyRequest } from "fastify";
 import { ExampleController } from "./core/controller/ExampleController";
+import { pageableHook } from "./inbound/hooks/PageableHook";
+import { Pageable } from "./core/type/Page";
 
 const exampleController = new ExampleController();
 
 export type PageParams = {
-  page: string|number;
-  size: string|number;
+  page: string | number;
+  size: string | number;
   sort: "id" | "name" | "description";
   direction: "asc" | "desc" | "ASC" | "DESC";
 };
 
 export async function ExampleRoutes(fastify: FastifyInstance) {
-
   fastify.get("", {
+    preHandler: pageableHook,
     schema: {
       querystring: {
         type: "object",
@@ -63,13 +65,11 @@ export async function ExampleRoutes(fastify: FastifyInstance) {
     },
     handler: async (
       request: FastifyRequest<{
-        Querystring: PageParams;
+        Querystring: Pageable;
       }>,
       reply
     ) => {
       return exampleController.getPaginated(request.query, reply);
     },
   });
-
-  
 }

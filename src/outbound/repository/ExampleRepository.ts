@@ -5,7 +5,10 @@ import AbstractRepository from "./AbstractRepository";
 import { ExampleModel } from "src/core/model/ExampleModel";
 import { Order } from "sequelize/types/model";
 
-export class ExampleRepository extends AbstractRepository implements IExampleRepository {
+export class ExampleRepository
+  extends AbstractRepository
+  implements IExampleRepository
+{
   async findAll(pageable: Pageable): Promise<Page<Example>> {
     const { page = 0, size = 10, sort = "id", direction = "ASC" } = pageable;
     const offset = page * size;
@@ -22,7 +25,6 @@ export class ExampleRepository extends AbstractRepository implements IExampleRep
       pageable.page || 0,
       pageable.size || 10,
       result.count
-    );  }
-
-
+    );
+  }
 }

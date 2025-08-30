@@ -1,18 +1,19 @@
 import cors from "@fastify/cors";
 import Fastify, { FastifyInstance } from "fastify";
 import "reflect-metadata";
-import { sequelize } from "./src/config/database";
 
 import swagger from "@fastify/swagger";
 import swaggerUi from "@fastify/swagger-ui";
 import { ExampleRoutes } from "./src/ExampleRoutes.route";
-import { Registry } from "./src/config/di/DI";
+import { Registry } from "./src/infra/di/DI";
 
 import {
   collectDefaultMetrics,
-  Registry as PromRegistry,
   Counter,
+  Registry as PromRegistry,
 } from "prom-client";
+import { ErrorHandler } from "src/inbound/errorHandler/ErrorHandler";
+import { sequelize } from "src/outbound/config/database";
 import { ExampleRepository } from "src/outbound/repository/ExampleRepository";
 
 class App {
@@ -74,6 +75,8 @@ class App {
       });
       done();
     });
+
+    this.server.setErrorHandler(ErrorHandler);
 
     this.server.addHook("onRequest", async (request) => {
       if (["POST"].includes(request.method)) {
