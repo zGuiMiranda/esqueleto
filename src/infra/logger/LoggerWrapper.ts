@@ -3,7 +3,6 @@ import logger from "./Winston";
 function getCallerInfo(): { className: string; methodName: string } {
   const err = new Error();
   const stack = err.stack?.split("\n") || [];
-
   for (let i = 3; i < stack.length; i++) {
     const line = stack[i].trim();
 
