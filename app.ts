@@ -42,8 +42,8 @@ class App {
     this.server.register(swagger, {
       openapi: {
         info: {
-          title: "Documentação Benefícios",
-          description: "Documentação da API para Benefícios",
+          title: "Documentação Esqueleto",
+          description: "Documentação da API para Esqueleto",
           version: "1.0.0",
         },
       },
